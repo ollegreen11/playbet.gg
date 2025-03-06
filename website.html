@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambling Site</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/react@18.0.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.0.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@3.10.0/dist/framer-motion.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1f2937;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script>
+        const { useState, useEffect } = React;
+
+        function GamblingSite() {
+            const [crashMultiplier, setCrashMultiplier] = useState(1.0);
+            const [isCrashed, setIsCrashed] = useState(false);
+            const [balance, setBalance] = useState(100);
+            const [bets, setBets] = useState([]);
+
+            useEffect(() => {
+                const fakeBets = [
+                    { user: 'Player123', amount: 50, game: 'Crash' },
+                    { user: 'RobloxKing', amount: 100, game: 'Roulette' },
+                    { user: 'ProGamer', amount: 200, game: 'Blackjack' }
+                ];
+
+                const interval = setInterval(() => {
+                    const newBet = fakeBets[Math.floor(Math.random() * fakeBets.length)];
+                    setBets(prev => [newBet, ...prev.slice(0, 9)]);
+                }, 2000);
+
+                return () => clearInterval(interval);
+            }, []);
+
+            const startCrash = () => {
+                setIsCrashed(false);
+                let multiplier = 1.0;
+                const interval = setInterval(() => {
+                    multiplier += 0.1;
+                    setCrashMultiplier(multiplier);
+                    if (Math.random() < 0.05) {
+                        setIsCrashed(true);
+                        clearInterval(interval);
+                    }
+                }, 500);
+            };
+
+            const cashOut = () => {
+                if (!isCrashed) {
+                    setBalance(balance * crashMultiplier);
+                    setIsCrashed(true);
+                }
+            };
+
+            return (
+                <div className="min-h-screen bg-zinc-900 text-white flex flex-col items-center justify-center gap-8 p-4">
+                    <h1 className="text-4xl font-bold">Roblox Gambling Site 🎯</h1>
+                    <div className="w-96 bg-gray-800 p-6 rounded-lg">
+                        <div className="text-3xl">
+                            🚀 Crash: {crashMultiplier.toFixed(2)}x
+                        </div>
+                        {isCrashed && <span className="text-red-500">CRASHED!</span>}
+                        <button onClick={startCrash} disabled={!isCrashed} className="bg-blue-500 py-2 px-4 rounded mt-4">
+                            Start Crash
+                        </button>
+                        <button onClick={cashOut} disabled={isCrashed} className="bg-green-500 py-2 px-4 rounded mt-4">
+                            Cash Out
+                        </button>
+                        <div className="text-lg mt-4">Balance: {balance.toFixed(2)} Robux</div>
+                    </div>
+
+                    <div className="w-full max-w-3xl bg-black p-4 rounded-lg text-center mt-8">
+                        <h2 className="text-xl font-bold">Fake Bets 💸</h2>
+                        {bets.map((bet, index) => (
+                            <div key={index} className="text-sm">
+                                {bet.user} bet {bet.amount} Robux on {bet.game}
+                            </div>
+                        ))}
+                    </div>
+
+                    <button className="bg-purple-500 py-2 px-4 rounded mt-4">
+                        Login with Discord
+                    </button>
+
+                    <button className="bg-red-500 py-2 px-4 rounded mt-4">
+                        Admin Panel
+                    </button>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<GamblingSite />, document.getElementById('root'));
+    </script>
+</body>
+</html>
+
