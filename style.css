@@ -1,0 +1,149 @@
+/* Grundläggande styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1f2937;
+    color: white;
+}
+
+/* Styling för knappar och disabled state */
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.5;
+}
+
+/* Storlekar och text-stil */
+h1 {
+    font-size: 3rem;
+}
+
+.w-96 {
+    width: 24rem;
+}
+
+.bg-gray-800 {
+    background-color: #2d3748;
+}
+
+.bg-black {
+    background-color: #1a202c;
+}
+
+.bg-blue-500 {
+    background-color: #3b82f6;
+}
+
+.bg-green-500 {
+    background-color: #10b981;
+}
+
+.bg-yellow-500 {
+    background-color: #fbbf24;
+}
+
+.bg-purple-500 {
+    background-color: #9333ea;
+}
+
+.text-red-500 {
+    color: #ef4444;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mt-8 {
+    margin-top: 2rem;
+}
+
+.mt-6 {
+    margin-top: 1.5rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.max-w-3xl {
+    max-width: 48rem;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.gap-8 {
+    gap: 2rem;
+}
+
+.bg-zinc-900 {
+    background-color: #111827;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.w-96 {
+    width: 24rem;
+}
+
+.w-96 {
+    width: 24rem;
+}
+
